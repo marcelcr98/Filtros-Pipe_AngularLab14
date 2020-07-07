@@ -1,0 +1,87 @@
+<!--Laboratorio -->
+<head><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"></head>
+
+<body style="margin: 20px;">
+  
+
+      <div class="row row-cols-1 row-cols-md-3">
+  <div class="col mb-4">
+    <div class="card text-white bg-primary card">
+       <div class="card-header">Heroes que pueden volar</div>
+      <div class="card-body">
+        <span>
+            Nuevo Heroe:</span>
+            <input type="text" #box
+                    (keyup.enter)="addHero(box.value); box.value=''"
+                    placeholder="hero name" class="form-control" style="width: 300px;"> 
+          <span>
+            Puede volar</span>
+            <input id="can-fly" type="checkbox" [(ngModel)]="canFly">
+           
+        </div>
+        <div class="form-group col-md-12">
+          <p>
+            <button (click)="reset()" class="btn btn-success">Reset</button>
+          </p>
+          <h4>Heroes que vuelan (filtrados)</h4>
+          <div id="flyers">
+            <div *ngFor="let hero of (heroes | flyingHeroes)">
+                {{hero.name}}
+            </div>
+          </div>
+          <h4>Todos los heroes (sin filtro)</h4>
+          <div id="all">
+            <div *ngFor="let hero of heroes">
+                {{hero.name}}
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col mb-4">
+      <div class="card bg-light mb-3" >
+         <div class="card-header">EJERCICIO 1</div>
+        <div class="card-body">
+            <app-hero-birthday></app-hero-birthday>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col mb-4">
+        <div class="card text-white bg-danger card">
+           <div class="card-header">EJERCICIO 2</div>
+          <div class="card-body">
+              <app-power-boost-calculator></app-power-boost-calculator>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col mb-4">
+          <div class="card text-white bg-dark card">
+             <div class="card-header">Heroes from JSON File</div>
+            <div class="card-body">
+                <div *ngFor="let hero of ('assets/heroes.json' | fetchJson) ">
+                  {{hero.name}}
+                </div>
+        
+                <p>Heroes as JSON:
+                  {{'assets/heroes.json' | fetchJson | json}}
+                </p>
+  
+            </div>
+          </div>
+        </div>
+
+
+
+
+</div>
+
+</body>
